@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BotAgentHub.Data.Models.BotConfiguration>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Konfigurasi Chatbot</h2>
+
+<p>
+    @Html.ActionLink("Create New", "NewBot")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlClient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlKb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UrlClient)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UrlKb)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserId)
+    </td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

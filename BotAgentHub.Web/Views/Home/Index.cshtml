@@ -1,0 +1,18 @@
+﻿@model IEnumerable<BotAgentHub.Data.Models.BotConfiguration>
+@{
+	ViewBag.Title = "Home Page";
+}
+
+<h1>Konfigurasi Bot</h1>
+
+<table class="table">
+	@foreach (var bot in Model)
+	{
+	<tr>
+		<td>@bot.Name</td>
+		<td>@bot.UrlClient</td>
+		<td>@bot.UrlKb</td>
+		<td>@bot.UserId</td>
+	</tr>
+	}
+</table>
