@@ -1,0 +1,474 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* Style the header */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0 3vw 0 3vw;
+    margin: 0;
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+.container-echa {
+    justify-content: center;
+    font-weight: bolder;
+}
+
+.container-profile {
+    font-weight: bold;
+}
+
+.icon {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+.container-chat {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 1vw;
+}
+
+.sender {
+    width: 50%;
+    float: left;
+}
+  
+/* Darker chat container */
+.receiver {
+    float: right;
+    border-color: #ccc;
+    background-color: #ddd;
+}
+  
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+  
+/* Style images */
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+  
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+}
+  
+/* Style time text */
+.time-right {
+    float: right;
+    color: #aaa;
+}
+  
+/* Style time text */
+.time-left {
+    float: left;
+    color: #999;
+}
+
+/* Container for flexboxes */
+section {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+}
+
+.judul {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5vw;
+}
+
+.judul > button {
+    width: fit-content;
+    background-color: white;
+    padding: 0.5vh 1.8vh 0.5vh 1.8vh;
+    vertical-align: middle;
+    color: #23272D;
+    border-radius: 50%;
+    border-width: 1.5px;
+    border-color: #23272D;
+    font-weight: bold;
+}
+
+.label-config {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.5vh;
+}
+
+
+.label-config > input {
+    width: 70%;
+    border-width: 1.5px;
+    border-radius: 10px;
+    border-color: #23272D;
+    color: #23272D;
+    padding-left: 1vw;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Unggah Foto';
+    border-width: 0px;
+    padding: 0.5vw 1vw;
+    border-radius: 6px;
+    background-color: #004A74;
+    color: white;
+    transition: 1s;
+} 
+
+.modal-footer > button {
+    background-color: #004A74;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.modal-footer > button:hover {
+    background-color: #23272D;
+    color: white;
+}
+
+/* Style the navigation menu */
+nav {
+    width: 20%;
+    background-color: #23272D;
+    color: white;
+    text-align: center;
+    padding: 0 1vw 0 1vw;
+    min-height: 90vh;
+}
+
+/* Style the list inside the menu */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav a {
+    display: flex;
+    justify-content: center;
+    padding: 5vh;
+    font-style: normal;
+    color: white;
+    text-decoration: none;
+    align-self: center;
+}
+
+nav a.active {
+    flex-wrap: wrap;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    font-weight: bolder;
+    border-bottom: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #FED400;
+}
+
+nav a:hover:not(.active) {
+    color: #FED400;
+}
+
+/* Style the content */
+article {
+    flex-grow: 1;
+    padding: 3vw 2vw 3vw 2vw;
+}
+
+.container-req {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 7vh;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    outline-width: 1px;
+    outline-style: solid;
+    border-radius: 10px;
+    margin-bottom: 1vw;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height:100%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #23272D;
+    color: white;
+    font-weight: bolder;
+}
+
+.cir-notif {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 100%;
+    padding-left: 2vw;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    padding: 1vw;
+    width: 60%;
+    height: 100%;
+}
+
+.terima {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    border-width: 0px;
+    border-radius: 10px;
+    background-color: #FED400;
+    font-weight: bolder;
+    color: #23272D;
+}
+
+/* Style the footer */
+footer {
+    background-color: #777;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.container-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card-title {
+    font-family: 'Nunito',sans-serif;
+    font-weight: bolder;
+    font-size: medium;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+  
+/* Add some padding inside the card container */
+.container-indiv {
+    padding: 2px 16px;
+}
+
+.act-btn{
+    z-index: 999;
+    background:#23272D;
+    display: block;
+    width: max-content;
+    padding: 1vw ;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: ease all 0.3s;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}
+.act-btn:hover{
+    color: #FED400;
+}
+
+#show-emails>ul{
+    list-style: none;
+    margin-left: 0;
+    display: inline-block;
+    padding-inline-start: 0;
+    margin-top: 1rem;
+}
+#show-emails>ul>li{
+    padding: 5px 10px;
+    margin-bottom: 3px;
+}
+.remove{
+    padding: 0 .6rem;
+    cursor: pointer;
+    float: right
+}
+.email-error{
+    border: 1px solid #ff0000;
+    padding: .7rem;
+    border-radius: 3px;
+    color: #ff0000;
+}
+
+.btn {
+    background-color: #23272D;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.btn:hover {
+    color: #FED400;
+}
+
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    section {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+        background-color: #23272D;
+        color: white;
+        text-align: center;
+        padding: 0 1vw 0 1vw;
+        min-height: fit-content;
+    }
+
+    .judul > button {
+        width: fit-content;
+        height: fit-content;
+        background-color: white;
+        padding: 0 1,5vh 0 1,5vh;
+    }
+
+    .circle {
+        width: fit-content;
+        padding: 1vw 3vw 1vw 3vw;
+    }
+
+    .circle > svg {
+        display: none !important;
+    }
+
+    .circle > span {
+        margin-left: 0px;
+    }
+
+    .container-req {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .message {
+        padding-left: 5vw;
+    }
+
+    .terima {
+        font-size: 12px;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    .act-btn{
+        background:#23272D;
+        display: block;
+        width: max-content;
+        padding: 2vw ;
+        text-align: center;
+        color: white;
+        font-weight: bolder;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: ease all 0.3s;
+        position: fixed;
+        right: 30px;
+        bottom:30px;
+      }
+
+    .act-btn:hover{background: blue}
+}
+
+/*.sidebar {
+    grid-area: sidebar;
+    padding-top: 5vh;
+    background-color: #23272D;
+    color: white;
+    text-align: center;
+}*/
+
+/*.content {
+    grid-area: content;
+    padding-top: 5vh;
+    padding-left: 3vh;
+}
+*/
+/*@media screen and (max-width: 1030px) {
+    .container {
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 16.5vh auto;
+        grid-template-columns: 20% auto;
+        grid-template-areas: "header header" "sidebar content";
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .container {
+        display: grid;
+        row-gap: 0px;
+        grid-template-rows:10vh auto auto;
+        grid-template-columns: 100%;
+        grid-template-areas: "header" "sidebar" "content";
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+        padding-top: 5vh;
+        background-color: #23272D;
+        color: white;
+        text-align: center;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+}*/
