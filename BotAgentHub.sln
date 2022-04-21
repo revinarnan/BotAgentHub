@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotAgentHub.Web", "BotAgent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotAgentHub.Data", "BotAgentHub.Data\BotAgentHub.Data.csproj", "{EDFC2B04-9DF8-48DE-8922-1F5C8AE6BF09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotAgentHubApp", "BotAgentHubApp\BotAgentHubApp.csproj", "{D9241DB7-0469-4609-9C4A-ECBF23F5794A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EDFC2B04-9DF8-48DE-8922-1F5C8AE6BF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDFC2B04-9DF8-48DE-8922-1F5C8AE6BF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDFC2B04-9DF8-48DE-8922-1F5C8AE6BF09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9241DB7-0469-4609-9C4A-ECBF23F5794A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9241DB7-0469-4609-9C4A-ECBF23F5794A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9241DB7-0469-4609-9C4A-ECBF23F5794A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9241DB7-0469-4609-9C4A-ECBF23F5794A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

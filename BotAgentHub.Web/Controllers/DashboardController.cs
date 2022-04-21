@@ -145,8 +145,7 @@ namespace BotAgentHub.Web.Controllers
                 System.IO.File.Delete(Path.Combine(Server.MapPath(imagesPath), botConfiguration.BotImageName));
             }
             //Save new photo
-            var fileName = Path.GetFileNameWithoutExtension(botImageFile.FileName);
-            fileName = DateTime.Now.ToString("hhmmss_ddMMyyyy") + "_"
+            var fileName = DateTime.Now.ToString("hhmmss_ddMMyyyy") + "_"
                                                                + Path.GetFileName(botImageFile.FileName);
 
             var filePath = Path.Combine(Server.MapPath(imagesPath), fileName);
