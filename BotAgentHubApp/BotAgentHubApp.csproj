@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44361</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -175,12 +175,33 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202204201724522_InitialModel.cs" />
     <Compile Include="Migrations\202204201724522_InitialModel.designer.cs">
       <DependentUpon>202204201724522_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204290644460_SeedUsers.cs" />
+    <Compile Include="Migrations\202204290644460_SeedUsers.designer.cs">
+      <DependentUpon>202204290644460_SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204290707132_SeedUserKaprodi.cs" />
+    <Compile Include="Migrations\202204290707132_SeedUserKaprodi.designer.cs">
+      <DependentUpon>202204290707132_SeedUserKaprodi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205101654338_DeleteNotification.cs" />
+    <Compile Include="Migrations\202205101654338_DeleteNotification.designer.cs">
+      <DependentUpon>202205101654338_DeleteNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205121620251_SeedChatbotConfiguration.cs" />
+    <Compile Include="Migrations\202205121620251_SeedChatbotConfiguration.designer.cs">
+      <DependentUpon>202205121620251_SeedChatbotConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205121634255_AddBaseEntityTiChatbotConfiguration.cs" />
+    <Compile Include="Migrations\202205121634255_AddBaseEntityTiChatbotConfiguration.designer.cs">
+      <DependentUpon>202205121634255_AddBaseEntityTiChatbotConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -190,7 +211,7 @@
     <Compile Include="Models\ChatbotConfiguration.cs" />
     <Compile Include="Models\ChatHistory.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\SettingViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -223,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\ChatHistory\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -270,10 +292,26 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204201724522_InitialModel.resx">
       <DependentUpon>202204201724522_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204290644460_SeedUsers.resx">
+      <DependentUpon>202204290644460_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204290707132_SeedUserKaprodi.resx">
+      <DependentUpon>202204290707132_SeedUserKaprodi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205101654338_DeleteNotification.resx">
+      <DependentUpon>202205101654338_DeleteNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205121620251_SeedChatbotConfiguration.resx">
+      <DependentUpon>202205121620251_SeedChatbotConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205121634255_AddBaseEntityTiChatbotConfiguration.resx">
+      <DependentUpon>202205121634255_AddBaseEntityTiChatbotConfiguration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -294,7 +332,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56661</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56661/</IISUrl>
+          <IISUrl>https://localhost:44361/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

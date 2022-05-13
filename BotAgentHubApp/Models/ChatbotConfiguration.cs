@@ -2,7 +2,7 @@
 
 namespace BotAgentHubApp.Models
 {
-    public class ChatbotConfiguration
+    public class ChatbotConfiguration : BaseEntity
     {
         public int Id { get; set; }
 
@@ -17,9 +17,5 @@ namespace BotAgentHubApp.Models
         [Display(Name = "URL Knowledge Base")]
         [Required, DataType(DataType.Url)]
         public string UrlKb { get; set; }
-
-        [Display(Name = "ID Admin Web")]
-        [Required]
-        public int UserId { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using BotAgentHubApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using BotAgentHubApp.Models;
+using System;
 
 namespace BotAgentHubApp
 {
@@ -34,7 +34,7 @@ namespace BotAgentHubApp
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -58,11 +58,11 @@ namespace BotAgentHubApp
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1016363166027-q482ca5470gj2ou2j34tktb90he9m1a1.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }
