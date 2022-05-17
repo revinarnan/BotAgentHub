@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BotAgentHubApp.Models.ChatHistory>
+@{
+    ViewBag.Title = "Riwayat Percakapan";
+}
+
+<h2>Riwayat Percakapan</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.Date)
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.Time)
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.IsDoneOnBot)
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.IsDoneOnLiveChat)
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.IsDoneOnEmail)
+	    </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.ChatHistoryFileName)
+	    </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.Date)
+	        </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.Time)
+	        </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.IsDoneOnBot)
+	        </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.IsDoneOnLiveChat)
+	        </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.IsDoneOnEmail)
+	        </td>
+	        <td>
+		        @Html.DisplayFor(modelItem => item.ChatHistoryFileName)
+	        </td>
+        </tr>
+    }
+
+
+</table>

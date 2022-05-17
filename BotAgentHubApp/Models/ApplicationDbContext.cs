@@ -9,6 +9,7 @@ namespace BotAgentHubApp.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<ChatbotConfiguration> ChatbotConfigurations { get; set; }
+        public DbSet<IdentityUserRole> UserRoles { get; set; }
         public DbSet<ChatHistory> ChatHistories { get; set; }
 
         public ApplicationDbContext()

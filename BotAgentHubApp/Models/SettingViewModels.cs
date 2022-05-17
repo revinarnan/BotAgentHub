@@ -6,9 +6,9 @@ namespace BotAgentHubApp.Models
     public class SettingViewModels
     {
         public string Name { get; set; }
-        public List<ApplicationUser> Users { get; set; }
+        public IEnumerable<UserRoleDto> UserRole { get; set; }
+        public IEnumerable<ApplicationUser> Users { get; set; }
         public IEnumerable<IdentityRole> Roles { get; set; }
         public ChatbotConfiguration ChatbotConfiguration { get; set; }
-        public IEnumerable<IdentityUserRole> UserRole { get; set; }
     }
 }
