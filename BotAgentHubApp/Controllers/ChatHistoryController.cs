@@ -16,9 +16,17 @@ namespace BotAgentHubApp.Controllers
         // GET: ChatHistory
         public ActionResult Index()
         {
-            var model = _context.ChatHistories.OrderBy(c => c.Date);
+            var model = _context.ChatHistories.OrderBy(c => c.Date).ToList();
 
             return View("ChatHistoryView", model);
+        }
+
+        public FileResult DownloadFile(string fileName)
+        {
+            string path = Server.MapPath("~/Files/ChatHistory/") + fileName;
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            return File(bytes, "application/octet-stream", fileName);
         }
     }
 }

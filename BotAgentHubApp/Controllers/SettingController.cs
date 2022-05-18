@@ -19,6 +19,7 @@ namespace BotAgentHubApp.Controllers
             var roleName = from u in _context.Users
                            join ur in _context.UserRoles on u.Id equals ur.UserId
                            join r in _context.Roles on ur.RoleId equals r.Id
+                           where r.Name == "StaffAdmin" || r.Name == "SuperAdmin"
                            select new UserRoleDto { UserName = u.UserName, RoleName = r.Name };
 
             var viewModel = new SettingViewModels

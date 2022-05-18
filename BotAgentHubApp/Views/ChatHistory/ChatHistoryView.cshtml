@@ -52,7 +52,7 @@
 		        @Html.DisplayFor(modelItem => item.IsDoneOnEmail)
 	        </td>
 	        <td>
-		        @Html.DisplayFor(modelItem => item.ChatHistoryFileName)
+		        @Html.ActionLink(item.ChatHistoryFileName, "DownloadFile", new {fileName = item.ChatHistoryFileName})
 	        </td>
         </tr>
     }
