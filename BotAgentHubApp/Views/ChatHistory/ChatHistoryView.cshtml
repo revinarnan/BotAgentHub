@@ -1,61 +1,70 @@
 ﻿@model IEnumerable<BotAgentHubApp.Models.ChatHistory>
 @{
     ViewBag.Title = "Riwayat Percakapan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Riwayat Percakapan</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.Date)
-	    </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.Time)
-	    </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.IsDoneOnBot)
-	    </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.IsDoneOnLiveChat)
-	    </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.IsDoneOnEmail)
-	    </th>
-	    <th>
-		    @Html.DisplayNameFor(model => model.ChatHistoryFileName)
-	    </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table_wrapper" style="width: 100vw;">
+    <!--INSERT TABLE HERE-->
+    <table class="table table-striped table-hover">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-	        <td>
-		        @Html.DisplayFor(modelItem => item.Date)
-	        </td>
-	        <td>
-		        @Html.DisplayFor(modelItem => item.Time)
-	        </td>
-	        <td>
-		        @Html.DisplayFor(modelItem => item.IsDoneOnBot)
-	        </td>
-	        <td>
-		        @Html.DisplayFor(modelItem => item.IsDoneOnLiveChat)
-	        </td>
-	        <td>
-		        @Html.DisplayFor(modelItem => item.IsDoneOnEmail)
-	        </td>
-	        <td>
-		        @Html.ActionLink(item.ChatHistoryFileName, "DownloadFile", new {fileName = item.ChatHistoryFileName})
-	        </td>
+            <th>
+                ID
+                @*@Html.DisplayNameFor(model => model.UserId)*@
+            </th>
+            <th>
+                Tanggal
+                @*@Html.DisplayNameFor(model => model.Date)*@
+            </th>
+            <th>
+                Waktu
+                @*@Html.DisplayNameFor(model => model.Time)*@
+            </th>
+            <th>
+                Bot
+                @*@Html.DisplayNameFor(model => model.IsDoneOnBot)*@
+            </th>
+            <th>
+                Live Chat
+                @*@Html.DisplayNameFor(model => model.IsDoneOnLiveChat)*@
+            </th>
+            <th>
+                E-mail
+                @*@Html.DisplayNameFor(model => model.IsDoneOnEmail)*@
+            </th>
+            <th>
+                Unduh Percakapan
+                @*@Html.DisplayNameFor(model => model.ChatHistoryFileName)*@
+            </th>
         </tr>
-    }
 
-
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDoneOnBot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDoneOnLiveChat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDoneOnEmail)
+                </td>
+                <td>
+                    @Html.ActionLink(item.ChatHistoryFileName, "DownloadFile", new { fileName = item.ChatHistoryFileName })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
