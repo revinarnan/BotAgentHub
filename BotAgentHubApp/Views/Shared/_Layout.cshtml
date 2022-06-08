@@ -22,7 +22,7 @@
 <body>
     <header>
         <div class="container-echa">
-            @Html.ActionLink("ECHA", "Index", "Home", new { area = "" }, new { @style = "font-weight: bolder;", @class = "basic-txt navbar-brand" })
+	        @Html.ActionLink("ECHA", "Index", "Dashboard", new { area = "" }, new { @style = "font-weight: bolder;", @class = "basic-txt navbar-brand" })
         </div>
 
         <div class="container-profile navbar">
@@ -35,7 +35,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li>@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
                 <li>@Html.ActionLink("Riwayat Chat", "Index", "ChatHistory")</li>
                 <li>@Html.ActionLink("Pengaturan", "Index", "Setting")</li>
             </ul>

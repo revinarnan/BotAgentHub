@@ -18,6 +18,9 @@ namespace BotAgentHubApp.Controllers
         {
             var model = _context.ChatHistories.OrderBy(c => c.Date).ToList();
 
+            if (!User.IsInRole("SuperAdmin, StaffAdmin, Kaprodi"))
+                return View("InvalidRole");
+
             return View("ChatHistoryView", model);
         }
 

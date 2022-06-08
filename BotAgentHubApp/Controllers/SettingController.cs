@@ -13,8 +13,10 @@ namespace BotAgentHubApp.Controllers
         }
 
         // GET: Setting
+        //[Authorize(Roles = "SuperAdmin")]
         public ActionResult Index()
         {
+
             var chatbotConfig = _context.ChatbotConfigurations.SingleOrDefault();
             var roleName = from u in _context.Users
                            join ur in _context.UserRoles on u.Id equals ur.UserId
@@ -33,11 +35,12 @@ namespace BotAgentHubApp.Controllers
             ViewBag.Name = new SelectList(viewModel.Roles, "Name", "Name");
             ViewBag.UserName = new SelectList(viewModel.Users, "UserName", "UserName");
 
-            return View("SettingsView", viewModel);
+            return !User.IsInRole("SuperAdmin") ? View("InvalidRole") : View("SettingsView", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Save(SettingViewModels models)
         {
             var botInDb = _context.ChatbotConfigurations.Single();

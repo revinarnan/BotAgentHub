@@ -93,7 +93,6 @@ namespace BotAgentHubApp.Controllers
 
         //
         // GET: /Account/VerifyCode
-        [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
@@ -107,7 +106,6 @@ namespace BotAgentHubApp.Controllers
         //
         // POST: /Account/VerifyCode
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
@@ -162,7 +160,7 @@ namespace BotAgentHubApp.Controllers
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 AddErrors(result);
             }
@@ -173,8 +171,8 @@ namespace BotAgentHubApp.Controllers
 
         // POST: /Setting/Index
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult> RegisterRole(SettingViewModels model, ApplicationUser user)
         {
             var userId = _context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
@@ -198,7 +196,6 @@ namespace BotAgentHubApp.Controllers
 
         //
         // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -374,7 +371,6 @@ namespace BotAgentHubApp.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
@@ -417,7 +413,7 @@ namespace BotAgentHubApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
 
         //
@@ -474,7 +470,7 @@ namespace BotAgentHubApp.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
