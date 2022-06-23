@@ -35,7 +35,10 @@ namespace BotAgentHubApp.Controllers
             ViewBag.Name = new SelectList(viewModel.Roles, "Name", "Name");
             ViewBag.UserName = new SelectList(viewModel.Users, "UserName", "UserName");
 
-            return !User.IsInRole("SuperAdmin") ? View("InvalidRole") : View("SettingsView", viewModel);
+            if (User.IsInRole("SuperAdmin"))
+                return View("SettingsView", viewModel);
+
+            return View("InvalidRole");
         }
 
         [HttpPost]

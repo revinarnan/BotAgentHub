@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using System;
+using System.Configuration;
 
 namespace BotAgentHubApp
 {
@@ -60,8 +61,8 @@ namespace BotAgentHubApp
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "1016363166027-q482ca5470gj2ou2j34tktb90he9m1a1.apps.googleusercontent.com",
-                ClientSecret = "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"
+                ClientId = ConfigurationManager.AppSettings["GoogleAuthClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["GoogleAuthClientSecret"]
             });
         }
     }
