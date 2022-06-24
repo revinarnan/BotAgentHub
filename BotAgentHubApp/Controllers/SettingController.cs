@@ -13,7 +13,7 @@ namespace BotAgentHubApp.Controllers
         }
 
         // GET: Setting
-        //[Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Index()
         {
 

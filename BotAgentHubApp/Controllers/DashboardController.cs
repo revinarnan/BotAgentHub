@@ -62,7 +62,7 @@ namespace BotAgentHubApp.Controllers
             return View("InvalidRole");
         }
 
-        public ActionResult DirectLineTest(string locale = "en-us", string user = "agent")
+        public ActionResult DirectLine(string locale = "en-us", string user = "agent")
         {
             bool isDirectLineMode = string.Equals(DirectLineMode, this.mode, StringComparison.OrdinalIgnoreCase);
 
@@ -106,7 +106,7 @@ namespace BotAgentHubApp.Controllers
                 ViewData["DirectLineToken"] = directLineToken;
             }
 
-            return View();
+            return PartialView("_ChatRoom");
         }
 
 

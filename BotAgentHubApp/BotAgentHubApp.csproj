@@ -321,7 +321,8 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Shared\_SideBar.cshtml" />
     <Content Include="Views\Shared\InvalidRole.cshtml" />
-    <Content Include="Views\Dashboard\DirectLineTest.cshtml" />
+    <Content Include="Views\Dashboard\DirectLine.cshtml" />
+    <Content Include="Views\Shared\_ChatRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
