@@ -3,22 +3,25 @@
 <script>
 
 	const styleSet = window.WebChat.createStyleSet({
-		bubbleBackground: 'rgba(0, 0, 255, .1)',
-		bubbleFromUserBackground: 'rgba(0, 255, 0, .1)',
+		bubbleBackground: '#23272D',
+		bubbleBorderRadius: 10,
+		bubbleFromUserBorderRadius: 10,
+		bubbleTextColor: 'white',
+        bubbleFromUserBorderColor: '#23272D',
+		bubbleFromUserBackground: 'white',
 
 		//botAvatarImage: '<your bot avatar URL>',
 		//botAvatarInitials: 'BF',
 		//userAvatarImage: '<your user avatar URL>',
 		//userAvatarInitials: 'WC',
 		rootHeight: '100%',
-		rootWidth: '30%'
+		rootWidth: '100%'
 	});
 
 	// After generated, you can modify the CSS rules
 	styleSet.textContent = {
 		...styleSet.textContent,
-		fontFamily: "'Comic Sans MS', 'Arial', sans-serif",
-		fontWeight: 'bold'
+		fontFamily: "'Nunito', sans-serif",
 	};
 
 	(async function () {
