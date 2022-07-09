@@ -1,4 +1,5 @@
 ﻿using BotAgentHubApp.Models;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -62,15 +63,15 @@ namespace BotAgentHubApp.Controllers
             return View("InvalidRole");
         }
 
-        public ActionResult DirectLine(string locale = "en-us", string user = "agent")
+        public ActionResult DirectLine(string locale = "en-us")
         {
             bool isDirectLineMode = string.Equals(DirectLineMode, this.mode, StringComparison.OrdinalIgnoreCase);
 
             ViewData["Locale"] = locale;
             ViewData["Mode"] = this.mode;
             ViewData["Title"] = _botName;
-            ViewData["UserId"] = user;
-            ViewData["UserName"] = user;
+            ViewData["UserId"] = User.Identity.GetUserName();
+            ViewData["UserName"] = User.Identity.GetUserName();
 
             if (isDirectLineMode)
             {
@@ -108,7 +109,7 @@ namespace BotAgentHubApp.Controllers
 
             return PartialView("_ChatRoom");
         }
-        
+
 
     }
 }
