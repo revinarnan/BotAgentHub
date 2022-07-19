@@ -223,6 +223,7 @@
     <Compile Include="Controllers\ChatHistoryController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SendEmailController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -280,6 +281,7 @@
     <Compile Include="Models\ChatBotEmailQuestion.cs" />
     <Compile Include="Models\ChatHistory.cs" />
     <Compile Include="Models\DirectLineResponse.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SettingViewModels.cs" />
     <Compile Include="Models\UserRoleDto.cs" />
@@ -328,6 +330,7 @@
     <Content Include="Views\Shared\InvalidRole.cshtml" />
     <Content Include="Views\Dashboard\DirectLine.cshtml" />
     <Content Include="Views\Shared\_ChatRoom.cshtml" />
+    <Content Include="Views\SendEmail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
