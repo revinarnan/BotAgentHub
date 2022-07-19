@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<BotAgentHubApp.Models.ChatBotEmailQuestion>
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -52,8 +53,8 @@
 
             <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">User0034</span>
         </div>
-        <div class="message" style="font-weight: normal;">Lorem ipsum </div>
-        <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
+	    <div class="message" style="font-weight: normal;">Lorem ipsum </div>
+	    <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
             <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
         </button>
     </div>

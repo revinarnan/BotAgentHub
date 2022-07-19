@@ -11,6 +11,7 @@ namespace BotAgentHubApp.Models
         public DbSet<ChatbotConfiguration> ChatbotConfigurations { get; set; }
         public DbSet<IdentityUserRole> UserRoles { get; set; }
         public DbSet<ChatHistory> ChatHistories { get; set; }
+        public DbSet<ChatBotEmailQuestion> ChatBotEmailQuestions { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

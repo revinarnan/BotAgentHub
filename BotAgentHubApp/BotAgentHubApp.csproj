@@ -267,12 +267,17 @@
     <Compile Include="Migrations\202206081733414_EditTestingChatbotTable.designer.cs">
       <DependentUpon>202206081733414_EditTestingChatbotTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207171517234_Add ChatBotEmailQUestions table.cs" />
+    <Compile Include="Migrations\202207171517234_Add ChatBotEmailQUestions table.designer.cs">
+      <DependentUpon>202207171517234_Add ChatBotEmailQUestions table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ChatbotConfiguration.cs" />
+    <Compile Include="Models\ChatBotEmailQuestion.cs" />
     <Compile Include="Models\ChatHistory.cs" />
     <Compile Include="Models\DirectLineResponse.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -384,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206081733414_EditTestingChatbotTable.resx">
       <DependentUpon>202206081733414_EditTestingChatbotTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207171517234_Add ChatBotEmailQUestions table.resx">
+      <DependentUpon>202207171517234_Add ChatBotEmailQUestions table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
