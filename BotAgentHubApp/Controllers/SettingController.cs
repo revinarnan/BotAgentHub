@@ -6,7 +6,7 @@ namespace BotAgentHubApp.Controllers
 {
     public class SettingController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public SettingController()
         {
             _context = new ApplicationDbContext();

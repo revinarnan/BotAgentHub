@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,44 +13,40 @@ namespace BotAgentHubApp.Controllers
 {
     public class DashboardController : Controller
     {
-        //private static string _directLineSecret = ConfigurationManager.AppSettings["DirectLineSecret"];
-        //private static string _botId = ConfigurationManager.AppSettings["BotId"];
-        //private static string _fromUser = "agent";
-
         private const string DirectLineMode = "DIRECTLINE";
         private const string GenerateDirectLineTokenUrl = "https://directline.botframework.com/v3/directline/tokens/generate";
         private const string UnknownMode = "UNKNOWN";
 
-        private static bool _enableDirectLineEnhancedAuthentication =
+        private static readonly bool EnableDirectLineEnhancedAuthentication =
             Convert.ToBoolean(WebConfigurationManager.AppSettings["EnableDirectLineEnhancedAuthentication"]);
-        private static string _directLineSecret = WebConfigurationManager.AppSettings["DirectLineSecret"];
-        private static string _botName = WebConfigurationManager.AppSettings["BotName"];
+        private static readonly string DirectLineSecret = WebConfigurationManager.AppSettings["DirectLineSecret"];
+        private static readonly string BotName = WebConfigurationManager.AppSettings["BotName"];
 
-        private readonly string mode;
-        private readonly string userId;
+        private readonly string _mode;
+        private readonly string _userId;
 
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public DashboardController()
         {
             _context = new ApplicationDbContext();
 
-            if (_enableDirectLineEnhancedAuthentication)
+            if (EnableDirectLineEnhancedAuthentication)
             {
-                this.userId = $"dl_{Guid.NewGuid()}";
+                this._userId = $"dl_{Guid.NewGuid()}";
             }
 
             // Determine which mode to operate under:
             // - Direct Line Speech should be used if a speech service region identifier and key are provided
             // - Direct Line should be used if a DL secret is provided
             // - Default to an unknown state (i.e. invalid app configuration provided)
-            if (!string.IsNullOrEmpty(_directLineSecret))
+            if (!string.IsNullOrEmpty(DirectLineSecret))
             {
-                this.mode = DirectLineMode;
+                this._mode = DirectLineMode;
             }
             else
             {
-                this.mode = UnknownMode;
+                this._mode = UnknownMode;
             }
         }
 
@@ -57,7 +54,11 @@ namespace BotAgentHubApp.Controllers
         {
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
             {
-                return View();
+                var model = from question in _context.ChatBotEmailQuestions
+                            where question.IsAnswered == false
+                            select question;
+
+                return View(model);
             }
 
             return View("InvalidRole");
@@ -65,11 +66,11 @@ namespace BotAgentHubApp.Controllers
 
         public ActionResult DirectLine(string locale = "en-us")
         {
-            bool isDirectLineMode = string.Equals(DirectLineMode, this.mode, StringComparison.OrdinalIgnoreCase);
+            bool isDirectLineMode = string.Equals(DirectLineMode, this._mode, StringComparison.OrdinalIgnoreCase);
 
             ViewData["Locale"] = locale;
-            ViewData["Mode"] = this.mode;
-            ViewData["Title"] = _botName;
+            ViewData["Mode"] = this._mode;
+            ViewData["Title"] = BotName;
             ViewData["UserId"] = User.Identity.GetUserName();
             ViewData["UserName"] = User.Identity.GetUserName();
 
@@ -80,15 +81,15 @@ namespace BotAgentHubApp.Controllers
                 var directLineClient = new HttpClient();
                 directLineClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                     "Bearer",
-                    _directLineSecret);
+                    DirectLineSecret);
 
-                string content = _enableDirectLineEnhancedAuthentication
+                string content = EnableDirectLineEnhancedAuthentication
                     ? JsonConvert.SerializeObject(
                         new
                         {
                             User = new
                             {
-                                Id = this.userId
+                                Id = this._userId
                             }
                         })
                     : string.Empty;

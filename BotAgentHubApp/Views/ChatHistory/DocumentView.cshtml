@@ -1,0 +1,41 @@
+﻿@model BotAgentHubApp.Models.CosmosDto
+
+@{
+    ViewBag.Title = "Document View";
+}
+
+<h2>DocumentView</h2>
+
+<div>
+	<h4>Item</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.TextList)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.TextList)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ETag)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ETag)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Back", "Index")
+</p>

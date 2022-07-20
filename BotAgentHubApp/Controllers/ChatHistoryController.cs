@@ -1,15 +1,20 @@
 ﻿using BotAgentHubApp.Models;
+using BotAgentHubApp.Services;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace BotAgentHubApp.Controllers
 {
     public class ChatHistoryController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly CosmosDbService _cosmosDbService;
 
         public ChatHistoryController()
         {
+            _cosmosDbService = new CosmosDbService();
             _context = new ApplicationDbContext();
         }
 
@@ -32,6 +37,23 @@ namespace BotAgentHubApp.Controllers
             byte[] bytes = System.IO.File.ReadAllBytes(path);
 
             return File(bytes, "application/octet-stream", fileName);
+        }
+
+        [ActionName("ViewDocument")]
+        public async Task<ActionResult> ViewDocumentAsync(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "naughty");
+            }
+
+            var item = await _cosmosDbService.GetItemAsync(id);
+            if (item == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "naughty");
+            }
+
+            return View("ChatHistoryView", item);
         }
     }
 }
