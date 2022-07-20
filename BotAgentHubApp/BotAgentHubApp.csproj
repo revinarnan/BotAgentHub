@@ -340,6 +340,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-BotAgentHubApp-8fb4666e-d9e3-477b-bed3-88fbee653eaa.mdf" />
+    <Content Include="App_Data\aspnet-BotAgentHubApp-8fb4666e-d9e3-477b-bed3-88fbee653eaa_log.ldf">
+      <DependentUpon>aspnet-BotAgentHubApp-8fb4666e-d9e3-477b-bed3-88fbee653eaa.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -388,6 +392,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Files\ChatHistory\Contoh.pdf" />
     <None Include="packages.config" />

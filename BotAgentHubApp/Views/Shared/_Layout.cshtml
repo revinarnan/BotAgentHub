@@ -35,10 +35,18 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
+                {
+                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                }
+                    
                 <li>@Html.ActionLink("Riwayat Chat", "Index", "ChatHistory")</li>
-                <li>@Html.ActionLink("Pengaturan", "Index", "Setting")</li>
-            </ul>
+
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
+                {
+                    <li>@Html.ActionLink("Pengaturan", "Index", "Setting")</li>
+                }
+                </ul>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
