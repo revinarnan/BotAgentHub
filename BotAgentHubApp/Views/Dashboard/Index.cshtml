@@ -4,45 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Permintaan Live Chat</h2>
-<div class="content">
-    <div class="container-req">
-        <div class="circle mobile-hide">
-            <svg height="1vw" width="1vw" style="vertical-align: middle;">
-                <circle cx="0.5vw" cy="0.5vw" r="0.4vw" stroke-width="0" fill="white" />
-            </svg>
-            <span style="vertical-align: middle; margin-left: 10px">User0034</span>
+@*<h2>Permintaan Live Chat</h2>
+    <div class="content">
+        <div class="container-req">
+            <div class="circle mobile-hide">
+                <svg height="1vw" width="1vw" style="vertical-align: middle;">
+                    <circle cx="0.5vw" cy="0.5vw" r="0.4vw" stroke-width="0" fill="white" />
+                </svg>
+                <span style="vertical-align: middle; margin-left: 10px">
+                    User0034
+                </span>
+            </div>
+            <div class="message">Lorem ipsum </div>
+            <button class="terima">Terima</button>
         </div>
-        <div class="message">Lorem ipsum </div>
-        <button class="terima">Terima</button>
-    </div>
+    </div>*@
 
-    <div class="container-req">
-        <div class="circle mobile-hide">
-            <svg height="1vw" width="1vw" style="vertical-align: middle;">
-                <circle cx="0.5vw" cy="0.5vw" r="0.4vw" stroke-width="0" fill="white" />
-            </svg>
-            <span style="vertical-align: middle; margin-left: 10px">User0034</span>
+<h2>Balas Melalui E-mail</h2>
+
+@*@foreach (var item in Model)
+{
+    <div class="content">
+        <div class="container-req">
+            <div class="circle mobile-hide" style="background-color: #004A74;">
+                <svg height="0.8vw" width="0.8vw" style="vertical-align: middle;">
+                    <circle cx="0.4vw" cy="0.4vw" r="0.32vw" stroke-width="0" fill="white" />
+                </svg>
+
+                <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">
+
+                    @Html.DisplayFor(modelItem => item.Email)
+
+                </span>
+            </div>
+            <div class="message" style="font-weight: normal;">
+
+                @Html.DisplayFor(modelItem => item.Question)
+
+            </div>
+            <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
+                <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
+            </button>
         </div>
-        <div class="message">Lorem ipsum </div>
-        <button class="terima">Terima</button>
     </div>
-
-    <div class="container-req">
-        <div class="circle mobile-hide">
-            <svg height="1vw" width="1vw" style="vertical-align: middle;">
-                <circle cx="0.5vw" cy="0.5vw" r="0.4vw" stroke-width="0" fill="white" />
-            </svg>
-            <span style="vertical-align: middle; margin-left: 10px">User0034</span>
-        </div>
-        <div class="message">Lorem ipsum </div>
-        <button class="terima">Terima</button>
-    </div>
-</div>
-
-<div class="judul">
-    <h2>Balas Melalui E-mail</h2>
-</div>
+}*@
 
 <div class="content">
     <div class="container-req">
@@ -51,23 +56,17 @@
                 <circle cx="0.4vw" cy="0.4vw" r="0.32vw" stroke-width="0" fill="white" />
             </svg>
 
-            <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">User0034</span>
-        </div>
-	    <div class="message" style="font-weight: normal;">Lorem ipsum </div>
-	    <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
-            <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
-        </button>
-    </div>
+            <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">
 
-    <div class="container-req">
-        <div class="circle mobile-hide" style="background-color: #004A74;">
-            <svg height="0.8vw" width="0.8vw" style="vertical-align: middle;">
-                <circle cx="0.4vw" cy="0.4vw" r="0.32vw" stroke-width="0" fill="white" />
-            </svg>
+                user0034
 
-            <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">User0034</span>
+            </span>
         </div>
-        <div class="message" style="font-weight: normal;">Lorem ipsum </div>
+        <div class="message" style="font-weight: normal;">
+
+            lorem ipsum
+
+        </div>
         <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
             <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
         </button>

@@ -57,7 +57,11 @@ namespace BotAgentHubApp.Controllers
         {
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
             {
-                return View();
+                var model = from question in _context.ChatBotEmailQuestions
+                            where question.IsAnswered == false
+                            select question;
+
+                return View(model);
             }
 
             return View("InvalidRole");
