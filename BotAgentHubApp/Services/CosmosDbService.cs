@@ -12,15 +12,13 @@ namespace BotAgentHubApp.Services
         private static readonly string DatabaseName = WebConfigurationManager.AppSettings["CosmosDbDatabaseId"];
         private static readonly string ContainerName = WebConfigurationManager.AppSettings["CosmosDbContainerId"];
 
-        public async Task<CosmosDto> GetItemAsync(string id)
+        public async Task<TranscriptDto> GetItemAsync(string id)
         {
-            CosmosClient client = new CosmosClient(accountEndpoint: Endpoint, authKeyOrResourceToken: Key);
-            Database database = await client.CreateDatabaseIfNotExistsAsync(DatabaseName);
-            Container container = await database.CreateContainerIfNotExistsAsync(
-                id: ContainerName,
-                partitionKeyPath: "/id");
+            CosmosClient client = new CosmosClient(Endpoint, Key);
+            var database = client.GetDatabase(DatabaseName);
+            var container = database.GetContainer(ContainerName);
 
-            return await container.ReadItemAsync<CosmosDto>(id, new PartitionKey(id));
+            return await container.ReadItemAsync<TranscriptDto>(id, new PartitionKey(id));
         }
     }
 }

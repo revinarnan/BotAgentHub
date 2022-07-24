@@ -54,16 +54,30 @@ namespace BotAgentHubApp.Controllers
         {
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
             {
-                var model = from question in _context.ChatBotEmailQuestions
-                            where question.IsAnswered == false
-                            select question;
+                var questionsModel = from question in _context.ChatBotEmailQuestions
+                                     where question.IsAnswered == false
+                                     select question;
+                var emailModel = new EmailModel();
 
-                return View(model);
+                var viewModel = new DashboardViewModels
+                {
+                    EmailModel = emailModel,
+                    EmailQuestions = questionsModel
+                };
+
+                return View(viewModel);
+            }
+
+            if (User.IsInRole("Kaprodi"))
+            {
+                return RedirectToAction("Index", "ChatHistory");
             }
 
             return View("InvalidRole");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
+        [Authorize(Roles = "StaffAdmin")]
         public ActionResult DirectLine(string locale = "en-us")
         {
             bool isDirectLineMode = string.Equals(DirectLineMode, this._mode, StringComparison.OrdinalIgnoreCase);

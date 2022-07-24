@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BotAgentHubApp.Models.ChatBotEmailQuestion>
+﻿@model BotAgentHubApp.Models.DashboardViewModels
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,7 +21,7 @@
     </div>*@
 
 <h2>Balas Melalui E-mail</h2>
-@foreach (var item in Model)
+@foreach (var item in Model.EmailQuestions)
 {
     <div class="content">
         <div class="container-req">

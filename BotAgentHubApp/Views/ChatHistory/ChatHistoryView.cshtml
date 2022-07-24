@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BotAgentHubApp.Models.ChatHistory>
+﻿@model BotAgentHubApp.Models.ChatHistoryViewModels
 @{
     ViewBag.Title = "Riwayat Percakapan";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,35 +12,28 @@
         <tr>
             <th>
                 User ID
-                @*@Html.DisplayNameFor(model => model.UserId)*@
             </th>
             <th>
                 Tanggal
-                @*@Html.DisplayNameFor(model => model.Date)*@
             </th>
             <th>
-                Waktu
-                @*@Html.DisplayNameFor(model => model.Time)*@
+                Waktu (WIB)
             </th>
             <th>
                 Bot
-                @*@Html.DisplayNameFor(model => model.IsDoneOnBot)*@
             </th>
             <th>
                 Live Chat
-                @*@Html.DisplayNameFor(model => model.IsDoneOnLiveChat)*@
             </th>
             <th>
                 E-mail
-                @*@Html.DisplayNameFor(model => model.IsDoneOnEmail)*@
             </th>
             <th>
-                Unduh Percakapan
-                @*@Html.DisplayNameFor(model => model.ChatHistoryFileName)*@
+                Lihat Percakapan
             </th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.ChatHistories)
         {
             <tr>
                 <td>
@@ -62,7 +55,7 @@
                     @Html.DisplayFor(modelItem => item.IsDoneOnEmail)
                 </td>
                 <td>
-                    @Html.ActionLink(item.ChatHistoryFileName, "DownloadFile", new { fileName = item.ChatHistoryFileName })
+                    @Html.ActionLink("View Document", "ViewDocument", new { id = item.ChatHistoryFileName })
                 </td>
             </tr>
         }

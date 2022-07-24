@@ -1,10 +1,11 @@
-﻿@model BotAgentHubApp.Models.EmailModel
+﻿@model BotAgentHubApp.Models.DashboardViewModels
 @{
-    Layout = null;
+	ViewBag.Title = "Send Email";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
-
+<h2>Kirim Email</h2>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -30,7 +31,7 @@
                         To:
                     </td>
                     <td>
-                        @Html.TextBoxFor(model => model.To)
+                        @Html.TextBoxFor(model => model.EmailModel.To)
                     </td>
                 </tr>
                 <tr>
@@ -38,16 +39,16 @@
                         Subject:
                     </td>
                     <td>
-                        @Html.TextBoxFor(model => model.Subject)
+                        @Html.TextBoxFor(model => model.EmailModel.Subject)
                     </td>
                 </tr>
                 <tr>
                     <td valign="top">
                         Body:
                     </td>
-                    <td>
-                        @Html.TextAreaFor(model => model.Body, new { rows = "3", cols = "20" })
-                    </td>
+	                <td>
+		                @Html.TextAreaFor(model => model.EmailModel.Body, new {rows = "10", cols = "50"})
+	                </td>
                 </tr>
 	            <tr>
                     <td></td>

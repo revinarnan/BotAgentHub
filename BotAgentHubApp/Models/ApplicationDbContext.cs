@@ -42,13 +42,13 @@ namespace BotAgentHubApp.Models
 
             foreach (var entity in entities)
             {
-                var now = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"); // current datetime
+                var now = DateTime.UtcNow.AddHours(7).ToString("MM/dd/yyyy hh:mm:ss tt"); // current datetime WIB
 
                 if (entity.State == EntityState.Added)
                 {
                     ((BaseEntity)entity.Entity).CreatedAt = now;
-                    ((BaseEntity)entity.Entity).Date = DateTime.Now.ToString("MM/dd/yyyy");
-                    ((BaseEntity)entity.Entity).Time = DateTime.Now.ToString("hh:mm:ss tt");
+                    ((BaseEntity)entity.Entity).Date = DateTime.UtcNow.AddHours(7).ToString("MM/dd/yyyy");
+                    ((BaseEntity)entity.Entity).Time = DateTime.UtcNow.AddHours(7).ToString("hh:mm:ss tt");
                 }
 
                 ((BaseEntity)entity.Entity).UpdatedAt = now;

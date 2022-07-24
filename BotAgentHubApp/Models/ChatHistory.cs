@@ -1,8 +1,10 @@
-﻿namespace BotAgentHubApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BotAgentHubApp.Models
 {
     public class ChatHistory : BaseEntity
     {
-        public int Id { get; set; }
+        [Key]
         public string UserId { get; set; }
         public bool IsDoneOnBot { get; set; }
         public bool IsDoneOnLiveChat { get; set; }
