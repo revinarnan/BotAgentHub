@@ -17,10 +17,10 @@
 
 <body style="font-family: 'Nunito', sans-serif;">
 
-    <a href="https://localhost:44361/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#23272D" class="bi bi-arrow-left" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-        </svg>
+    <a href="@Url.Action("Index", "Dashboard")">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#23272D" class="bi bi-arrow-left" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
     </a>
 
     <h2 style="padding: 0px 0px 0px 35px">Balas Melalui E-mail</h2>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     @Html.Label("Balasan", new { Style = "font-weight: normal" })
                     <div>
-                        @Html.TextAreaFor(model => model.EmailModel.Body, new { @class = "autoExpand", rows = "3", cols = "20", style = " width:75vw;" })
+                        @Html.TextAreaFor(model => model.EmailModel.Body, new { @class = "autoExpand", rows = "10", cols = "20", style = " width:75vw;" })
 
                         <script>
                             function getScrollHeight(elm) {
@@ -60,7 +60,7 @@
                                 // make sure the input event originated from a textarea and it's desired to be auto-expandable
                                 if (!elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA') return
 
-                                var minRows = 3 | 0, rows;
+                                var minRows = 10 | 0, rows;
                                 !elm._baseScrollHeight && getScrollHeight(elm)
 
                                 elm.rows = minRows
