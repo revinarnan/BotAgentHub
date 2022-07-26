@@ -1,7 +1,7 @@
 ﻿using BotAgentHubApp.Models;
 using BotAgentHubApp.Services;
 using System.Linq;
-using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -10,50 +10,77 @@ namespace BotAgentHubApp.Controllers
     public class ChatHistoryController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly CosmosDbService _cosmosDbService;
+        private readonly AzureBlobService _azureBlobService;
 
         public ChatHistoryController()
         {
-            _cosmosDbService = new CosmosDbService();
+            _azureBlobService = new AzureBlobService();
             _context = new ApplicationDbContext();
         }
 
         // GET: ChatHistory
         public ActionResult Index()
         {
-            var model = _context.ChatHistories.OrderBy(c => c.Date).ToList();
+            var model = from record in _context.ChatHistories
+                        orderby record.CreatedAt
+                        select record;
+
+            var viewModel = new ChatHistoryViewModels()
+            {
+                ChatHistories = model,
+                Transcript = new TranscriptDto()
+            };
 
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin") || User.IsInRole("Kaprodi"))
             {
-                return View("ChatHistoryView", model);
+                return View("ChatHistoryView", viewModel);
             }
 
             return View("InvalidRole");
         }
 
-        public FileResult DownloadFile(string fileName)
-        {
-            string path = Server.MapPath("~/Files/ChatHistory/") + fileName;
-            byte[] bytes = System.IO.File.ReadAllBytes(path);
-
-            return File(bytes, "application/octet-stream", fileName);
-        }
-
         [ActionName("ViewDocument")]
         public async Task<ActionResult> ViewDocumentAsync(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "naughty");
-            }
+            // Download blob file
+            var path = Server.MapPath("~/Files/ChatHistory/") + id;
+            await _azureBlobService.DownloadTranscriptAsync(id, path);
 
-            var item = await _cosmosDbService.GetItemAsync(id);
-            if (item == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "naughty");
-            }
+            // Deserialize blob file to TranscriptDto model
+            var jsonText = System.IO.File.ReadAllText(path);
+            var transcript = JsonSerializer.Deserialize<TranscriptDto>(jsonText);
 
-            return View("ChatHistoryView", item);
+            // Deserialize TextList object to MessageLog model
+            var messageObject = transcript.TextList;
+            var messageList = JsonSerializer.Deserialize<MessageLog>(messageObject);
+
+            var model = from record in _context.ChatHistories select record;
+
+            var viewModel = new ChatHistoryViewModels()
+            {
+                ChatHistories = model,
+                Transcript = transcript,
+                Message = messageList
+            };
+
+            return View("DocumentView", viewModel);
         }
+
+        //[ActionName("ViewDocument")]
+        //public async Task<ActionResult> ViewDocumentAsync(string id)
+        //{
+        //    var model = from record in _context.ChatHistories
+        //                select record;
+        //    var item = await _cosmosDbService.GetItemAsync(id);
+        //    var viewModel = new ChatHistoryViewModels()
+        //    {
+        //        ChatHistories = model,
+        //        Cosmos = item
+        //    };
+
+        //    ViewBag.Data = item.Document;
+
+        //    return View("DocumentView", viewModel);
+        //}
     }
 }

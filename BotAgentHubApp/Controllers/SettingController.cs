@@ -13,7 +13,6 @@ namespace BotAgentHubApp.Controllers
         }
 
         // GET: Setting
-        [Authorize(Roles = "SuperAdmin")]
         public ActionResult Index()
         {
 
@@ -36,7 +35,19 @@ namespace BotAgentHubApp.Controllers
             ViewBag.UserName = new SelectList(viewModel.Users, "UserName", "UserName");
 
             if (User.IsInRole("SuperAdmin"))
+            {
                 return View("SettingsView", viewModel);
+            }
+
+            if (User.IsInRole("StaffAdmin"))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+
+            if (User.IsInRole("Kaprodi"))
+            {
+                return RedirectToAction("Index", "ChatHistory");
+            }
 
             return View("InvalidRole");
         }
