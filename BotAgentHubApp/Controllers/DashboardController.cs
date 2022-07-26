@@ -76,8 +76,8 @@ namespace BotAgentHubApp.Controllers
             return View("InvalidRole");
         }
 
-        [Authorize(Roles = "SuperAdmin")]
-        [Authorize(Roles = "StaffAdmin")]
+        //[Authorize(Roles = "SuperAdmin")]
+        //[Authorize(Roles = "StaffAdmin")]
         public ActionResult DirectLine(string locale = "en-us")
         {
             bool isDirectLineMode = string.Equals(DirectLineMode, this._mode, StringComparison.OrdinalIgnoreCase);

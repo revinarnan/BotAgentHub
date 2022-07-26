@@ -4,36 +4,38 @@
 	ViewBag.Title = "Document View";
 }
 
-<h2>Riwayat Percakapan</h2>
+<a href="@Url.Action("Index")">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#23272D" class="bi bi-arrow-left" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+    </svg>
+</a>
+
+<h2 style="margin-bottom: 2vw">Riwayat Percakapan</h2>
 
 <div>
-	<dl class="dl-horizontal">
-		<dt>
-			Conversation ID
+	<dl class="row">
+		<dt class="col-sm-3">
+			ID Percakapan
 		</dt>
-		<dd>
+		<dd class="col-sm-9">
 			@Html.DisplayFor(model => model.Transcript.ConversationId)
 		</dd>
 
-		<dt>
-			Date
+		<dt class="col-sm-3">
+			Tanggal
 		</dt>
-		<dd>
+		<dd class="col-sm-9">
 			@Html.DisplayFor(model => model.Transcript.Date)
 		</dd>
 			
-		<dt>
-			Message
+		<dt class="col-sm-3">
+			Pesan
 		</dt>
-		<dd>
+		<dd class="col-sm-9">
 			@foreach (var item in Model.Message.MessageList)
 			{
-            <div>@Html.DisplayFor(model => item)</div>
+            <div class="lh-lg">@Html.DisplayFor(model => item)</div>
 			}
 		</dd>
 	</dl>
 </div>
-
-<p>
-	@Html.ActionLink("Back", "Index")
-</p>
