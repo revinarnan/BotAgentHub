@@ -26,21 +26,21 @@
                 <div class="form-group">
                     @Html.Label("Kepada", new { Style = "font-weight: normal" })
                     <div>
-                        @Html.TextBoxFor(model => model.To, new { style = " width:75vw; " })
+                        @Html.TextBoxFor(model => model.EmailModel.To, new { style = " width:75vw; " })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.Label("Judul", new { Style = "font-weight: normal" })
                     <div>
-                        @Html.TextBoxFor(model => model.Subject, new { style = " width:75vw; " })
+                        @Html.TextBoxFor(model => model.EmailModel.Subject, new { style = " width:75vw; " })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.Label("Balasan", new { Style = "font-weight: normal" })
                     <div>
-                        @Html.TextAreaFor(model => model.Body, new { @class = "autoExpand", rows = "3", cols = "20", style = " width:75vw;" })
+                        @Html.TextAreaFor(model => model.EmailModel.Body, new { @class = "autoExpand", rows = "3", cols = "20", style = " width:75vw;" })
 
                         <script>
                             function getScrollHeight(elm) {
