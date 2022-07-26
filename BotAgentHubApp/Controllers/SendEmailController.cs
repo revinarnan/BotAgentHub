@@ -19,7 +19,7 @@ namespace BotAgentHubApp.Controllers
         }
 
         // GET: SendEmail
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             var mailTemplate = "Terima kasih telah mencoba menghubungi kami.\n" +
                                "Mohon maaf kami tidak tersedia pada jam tersebut.\n\n" +
@@ -32,6 +32,7 @@ namespace BotAgentHubApp.Controllers
             var questionsModel = from question in _context.ChatBotEmailQuestions
                                  where question.IsAnswered == false
                                  select question;
+            //var questionData = questionsModel.Single(q => q.Id == id);
             var emailModel = new EmailModel();
 
             var viewModel = new DashboardViewModels
@@ -39,6 +40,8 @@ namespace BotAgentHubApp.Controllers
                 EmailModel = emailModel,
                 EmailQuestions = questionsModel
             };
+            //viewModel.EmailModel.To = questionData.Email;
+            //viewModel.EmailModel.Subject = $"Balas: [{questionData.Question}]";
             viewModel.EmailModel.Body = mailTemplate;
 
             return View(viewModel);

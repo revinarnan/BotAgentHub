@@ -57,6 +57,7 @@ namespace BotAgentHubApp.Controllers
                 var questionsModel = from question in _context.ChatBotEmailQuestions
                                      where question.IsAnswered == false
                                      select question;
+
                 var emailModel = new EmailModel();
 
                 var viewModel = new DashboardViewModels
@@ -76,8 +77,6 @@ namespace BotAgentHubApp.Controllers
             return View("InvalidRole");
         }
 
-        [Authorize(Roles = "SuperAdmin")]
-        [Authorize(Roles = "StaffAdmin")]
         public ActionResult DirectLine(string locale = "en-us")
         {
             bool isDirectLineMode = string.Equals(DirectLineMode, this._mode, StringComparison.OrdinalIgnoreCase);
