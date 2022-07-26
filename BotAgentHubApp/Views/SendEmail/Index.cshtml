@@ -1,64 +1,81 @@
 ﻿@model BotAgentHubApp.Models.DashboardViewModels
 @{
-	ViewBag.Title = "Send Email";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 <!DOCTYPE html>
-<h2>Kirim Email</h2>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <style type="text/css">
-        body {
-            font-family: Arial;
-            font-size: 10pt;
-        }
-
-        table th, table td {
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+
+
+<body style="font-family: 'Nunito', sans-serif;">
+
+    <h2 style="padding: 0px 0px 0px 35px">Balas Melalui E-mail</h2>
+
     <div>
         @using (Html.BeginForm("Index", "SendEmail", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <table border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td style="width: 80px">
-                        To:
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.EmailModel.To)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Subject:
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.EmailModel.Subject)
-                    </td>
-                </tr>
-                <tr>
-                    <td valign="top">
-                        Body:
-                    </td>
-	                <td>
-		                @Html.TextAreaFor(model => model.EmailModel.Body, new {rows = "10", cols = "50"})
-	                </td>
-                </tr>
-	            <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit" value="Send" />
-                    </td>
-                </tr>
-            </table>
-            <br />
-            <span style="color:green">@ViewBag.Message</span>
+            <div class="form-horizontal" style="padding: 10px 0px 0px 50px">
+                <div class="form-group">
+                    @Html.Label("Kepada", new { Style = "font-weight: normal" })
+                    <div>
+                        @Html.TextBoxFor(model => model.To, new { style = " width:75vw; " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Judul", new { Style = "font-weight: normal" })
+                    <div>
+                        @Html.TextBoxFor(model => model.Subject, new { style = " width:75vw; " })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Balasan", new { Style = "font-weight: normal" })
+                    <div>
+                        @Html.TextAreaFor(model => model.Body, new { @class = "autoExpand", rows = "3", cols = "20", style = " width:75vw;" })
+
+                        <script>
+                            function getScrollHeight(elm) {
+                                var savedValue = elm.value
+                                elm.value = ''
+                                elm._baseScrollHeight = elm.scrollHeight
+                                elm.value = savedValue
+                            }
+
+                            function onExpandableTextareaInput({ target: elm }) {
+                                // make sure the input event originated from a textarea and it's desired to be auto-expandable
+                                if (!elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA') return
+
+                                var minRows = 3 | 0, rows;
+                                !elm._baseScrollHeight && getScrollHeight(elm)
+
+                                elm.rows = minRows
+                                rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 16)
+                                elm.rows = minRows + rows
+                            }
+
+
+                            // global delegated event listener
+                            document.addEventListener('input', onExpandableTextareaInput)
+                        </script>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Kirim Balasan" class="btn" />
+                    </div>
+                </div>
+            </div>
+
         }
     </div>
 </body>
