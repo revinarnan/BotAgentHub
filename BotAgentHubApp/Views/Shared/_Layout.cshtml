@@ -42,7 +42,7 @@
 
                 <li>@Html.ActionLink("Riwayat Chat", "Index", "ChatHistory")</li>
 
-                @if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
+                @if (User.IsInRole("SuperAdmin"))
                 {
                     <li>@Html.ActionLink("Pengaturan", "Index", "Setting")</li>
                 }
