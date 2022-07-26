@@ -4,70 +4,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Permintaan Live Chat</h2>
-    <div class="content">
-        <div class="container-req">
-            <div class="circle mobile-hide">
-                <svg height="1vw" width="1vw" style="vertical-align: middle;">
-                    <circle cx="0.5vw" cy="0.5vw" r="0.4vw" stroke-width="0" fill="white" />
-                </svg>
-                <span style="vertical-align: middle; margin-left: 10px">
-                    User0034
-                </span>
-            </div>
-            <div class="message">Lorem ipsum </div>
-            <button class="terima">Terima</button>
-        </div>
-    </div>*@
+<h2>Live Chat</h2>
 
-<h2>Balas Melalui E-mail</h2>
+<div class="content">
+    <div class="container-req" style="height: 70vh; outline: none">
+        <iframe src="https://localhost:44361/Dashboard/DirectLine?Length=9" title="Live Chat"
+                style="width: 78vw"></iframe>
+    </div>
+
+</div>
+
+<div class="judul">
+    <h2>Balas Melalui E-mail</h2>
+</div>
+
 @foreach (var item in Model)
 {
     <div class="content">
         <div class="container-req">
-            <div class="circle mobile-hide" style="background-color: #004A74;">
-                <svg height="0.8vw" width="0.8vw" style="vertical-align: middle;">
-                    <circle cx="0.4vw" cy="0.4vw" r="0.32vw" stroke-width="0" fill="white" />
-                </svg>
+            <div class="email-wrap mobile-hide">
+                <span style="padding: 0 2vw 0 2vw; font-weight: normal;">
 
-                <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">
-
-                    @Html.DisplayFor(modelItem => item.Email)
+                    @Html.DisplayFor(modelItem => item.Email, new { style = "overflow-wrap: break-word;" })
 
                 </span>
             </div>
+            
             <div class="message" style="font-weight: normal;">
 
                 @Html.DisplayFor(modelItem => item.Question)
 
             </div>
-            <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
-	            <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
+
+            <button class="terima"
+                    onclick="createPopupWin('https://localhost:44361/SendEmail','Balas Melalui E-mail', 300, 400)">
+                <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
+
+                <script>
+                    function createPopupWin(pageURL, pageTitle,
+                        popupWinWidth, popupWinHeight) {
+                        var left = (screen.width - popupWinWidth) / 2;
+                        var top = (screen.height - popupWinHeight) / 4;
+
+                        var myWindow = window.open(pageURL, pageTitle,
+                            'resizable=no, width=' + popupWinWidth
+                            + ', height=' + popupWinHeight + ', top='
+                            + top + ', left=' + left);
+                    }
+                </script>
             </button>
+
         </div>
     </div>
 }
-
-@*<div class="content">
-    <div class="container-req">
-        <div class="circle mobile-hide" style="background-color: #004A74;">
-            <svg height="0.8vw" width="0.8vw" style="vertical-align: middle;">
-                <circle cx="0.4vw" cy="0.4vw" r="0.32vw" stroke-width="0" fill="white" />
-            </svg>
-
-            <span style="vertical-align: middle; margin-left: 10px; font-weight: normal;">
-
-                user0034
-
-            </span>
-        </div>
-        <div class="message" style="font-weight: normal;">
-
-            lorem ipsum
-
-        </div>
-        <button class="terima" style="background-color: #004A74;" data-toggle="modal" data-target="#myForm">
-            <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
-        </button>
-    </div>
-</div>*@

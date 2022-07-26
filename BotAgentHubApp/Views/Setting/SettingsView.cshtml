@@ -1,6 +1,8 @@
 ﻿@model BotAgentHubApp.Models.SettingViewModels
 @{
-	ViewBag.Title = "Settings";
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <h2>Pengaturan Website</h2>
@@ -31,16 +33,16 @@
 
             <div class="form-group">
                 <div>
-                    <input type="submit" value="Simpan Perubahan" class="btn" />
+                    <input type="submit" value="Simpan Perubahan" class="btn" style="color: white" />
                 </div>
             </div>
         </div>
     }
 </div>
 
-    <div class="judul">
-        <h2>Pengaturan Admin</h2>
-    </div>
+<div class="judul">
+    <h2>Pengaturan Admin</h2>
+</div>
 
 <div style="margin-left: 20px;">
     @using (Html.BeginForm("RegisterRole", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -64,7 +66,7 @@
 
             <div class="form-group">
                 <div>
-                    <input type="submit" value="Simpan Perubahan" class="btn" />
+                    <input type="submit" value="Simpan Perubahan" class="btn" style="color: white" />
                 </div>
             </div>
         </div>
@@ -77,26 +79,54 @@
 </div>
 
 <table class="table table-striped table-hover">
-	<tr>
-		<th>
-			@Html.DisplayName("User Name")
-		</th>
-		<th>
-			@Html.DisplayName("Role")
-		</th>
-	</tr>
+    <tr>
+        <th>
+            @Html.DisplayName("User Name")
+        </th>
+        <th>
+            @Html.DisplayName("Role")
+        </th>
+    </tr>
 
-	@foreach (var item in Model.UserRole) 
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.UserName)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.RoleName)
-			</td>
-		</tr>
-	}
-	
-	
+    @foreach (var item in Model.UserRole)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+        </tr>
+    }
+
+
 </table>
+
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
+{
+    <button id="myBtn" class="act-btn" onclick="createPopupWin('https://localhost:44361/Dashboard/DirectLine?Length=9','Chat Room', 300, 400)">
+
+        <svg class="mobile-hide" height="2vw" width="2vw" style="vertical-align: middle; margin-right: 10px">
+            <circle cx="1vw" cy="1vw" r="0.8vw" stroke-width="0" fill="#FED400" />
+        </svg>
+
+        <span style="vertical-align: middle; font-family: 'Nunito', sans-serif;">
+            Live Chat
+        </span>
+
+        <script>
+            function createPopupWin(pageURL, pageTitle,
+                popupWinWidth, popupWinHeight) {
+                var left = (screen.width - popupWinWidth) / 2;
+                var top = (screen.height - popupWinHeight) / 4;
+
+                var myWindow = window.open(pageURL, pageTitle,
+                    'resizable=yes, width=' + popupWinWidth
+                    + ', height=' + popupWinHeight + ', top='
+                    + top + ', left=' + left);
+            }
+        </script>
+
+    </button>
+}
