@@ -32,27 +32,28 @@ namespace BotAgentHubApp.Controllers
             var questionsModel = from question in _context.ChatBotEmailQuestions
                                  where question.IsAnswered == false
                                  select question;
-            //var questionData = questionsModel.Single(q => q.Id == id);
-            var emailModel = new EmailModel();
+            var questionData = questionsModel.Single(q => q.Id == id);
 
             var viewModel = new DashboardViewModels
             {
-                EmailModel = emailModel,
-                EmailQuestions = questionsModel
+                EmailModel = new EmailModel(),
+                EmailQuestions = questionsModel,
+                BotEmailQuestion = new ChatBotEmailQuestion()
             };
-            //viewModel.EmailModel.To = questionData.Email;
-            //viewModel.EmailModel.Subject = $"Balas: [{questionData.Question}]";
+            viewModel.BotEmailQuestion.Id = questionData.Id;
+            viewModel.EmailModel.To = questionData.Email;
+            viewModel.EmailModel.Subject = $"Balas: [{questionData.Question}]";
             viewModel.EmailModel.Body = mailTemplate;
 
             return View(viewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(DashboardViewModels model)
         {
-            var emailQuestion = model.EmailQuestions.SingleOrDefault();
-            var chatHistoryInDb = _context.ChatHistories.Single(c => c.ChatHistoryFileName == emailQuestion.Id);
-            var emailQuestionInDb = _context.ChatBotEmailQuestions.Single(e => e.Id == emailQuestion.Id);
+            var chatHistoryInDb = _context.ChatHistories.Single(c => c.ChatHistoryFileName == model.BotEmailQuestion.Id);
+            var emailQuestionInDb = _context.ChatBotEmailQuestions.Single(e => e.Id == model.BotEmailQuestion.Id);
 
             using (var mm = new MailMessage(Email, model.EmailModel.To))
             {

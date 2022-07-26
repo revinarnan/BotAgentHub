@@ -6,5 +6,7 @@ namespace BotAgentHubApp.Models
     {
         public EmailModel EmailModel { get; set; }
         public IEnumerable<ChatBotEmailQuestion> EmailQuestions { get; set; }
+        public ChatBotEmailQuestion BotEmailQuestion { get; set; }
+        public string Notification { get; set; }
     }
 }

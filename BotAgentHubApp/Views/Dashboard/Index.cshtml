@@ -38,28 +38,30 @@
 
 
             <button class="terima"
-                    onclick="location.href='@Url.Action("Index", "SendEmail", new { id = item.Id })';">
+                    onclick="location.href = '@Url.Action("Index", "SendEmail", new {id = item.Id})';">
                 <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
             </button>
 
             @*<button class="terima"
-                onclick="createPopupWin('https://localhost:44361/SendEmail','Balas Melalui E-mail', 300, 400)">
-            <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
+                        onclick="createPopupWin('https://localhost:44361/SendEmail','Balas Melalui E-mail', 300, 400)">
+                    <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
 
-            <script>
-                function createPopupWin(pageURL, pageTitle,
-                    popupWinWidth, popupWinHeight) {
-                    var left = (screen.width - popupWinWidth) / 2;
-                    var top = (screen.height - popupWinHeight) / 4;
+                    <script>
+                        function createPopupWin(pageURL, pageTitle,
+                            popupWinWidth, popupWinHeight) {
+                            var left = (screen.width - popupWinWidth) / 2;
+                            var top = (screen.height - popupWinHeight) / 4;
 
-                    var myWindow = window.open(pageURL, pageTitle,
-                        'resizable=no, width=' + popupWinWidth
-                        + ', height=' + popupWinHeight + ', top='
-                        + top + ', left=' + left);
-                }
-            </script>
-        </button>*@
-
+                            var myWindow = window.open(pageURL, pageTitle,
+                                'resizable=no, width=' + popupWinWidth
+                                + ', height=' + popupWinHeight + ', top='
+                                + top + ', left=' + left);
+                        }
+                    </script>
+                </button>*@
         </div>
     </div>
 }
+
+@Html.DisplayFor(model => model.Notification)
+

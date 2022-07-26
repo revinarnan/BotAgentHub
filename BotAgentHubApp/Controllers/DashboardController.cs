@@ -58,13 +58,19 @@ namespace BotAgentHubApp.Controllers
                                      where question.IsAnswered == false
                                      select question;
 
-                var emailModel = new EmailModel();
-
                 var viewModel = new DashboardViewModels
                 {
-                    EmailModel = emailModel,
-                    EmailQuestions = questionsModel
+                    EmailModel = new EmailModel(),
+                    EmailQuestions = questionsModel,
+                    BotEmailQuestion = new ChatBotEmailQuestion(),
+                    Notification = null
                 };
+
+                if (!viewModel.EmailQuestions.Any())
+                {
+                    viewModel.Notification = "Tidak ada permintaan email yang belum dibalas.";
+                    return View(viewModel);
+                }
 
                 return View(viewModel);
             }

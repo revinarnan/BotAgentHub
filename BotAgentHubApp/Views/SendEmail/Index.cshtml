@@ -28,6 +28,7 @@
     <div>
         @using (Html.BeginForm("Index", "SendEmail", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+            @Html.AntiForgeryToken()
             <div class="form-horizontal" style="padding: 10px 0px 0px 50px">
                 <div class="form-group">
                     @Html.Label("Kepada", new { Style = "font-weight: normal" })
@@ -74,8 +75,10 @@
                         </script>
                     </div>
                 </div>
+                
+                @Html.HiddenFor(model => model.BotEmailQuestion.Id)
 
-                <div class="form-group">
+	            <div class="form-group">
                     <div>
                         <input type="submit" value="Kirim Balasan" class="btn" />
                     </div>
