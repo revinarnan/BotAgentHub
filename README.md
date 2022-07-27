@@ -1,4 +1,6 @@
 BotAgentHub
 
-Untuk buka pake Visual Studio Community,
+Untuk buka pakai Visual Studio Community,
 pilih open solution > pilih BotAgentHub.sln
+
+Main project => BotAgentHubApp.csproj
