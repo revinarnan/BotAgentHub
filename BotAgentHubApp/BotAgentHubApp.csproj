@@ -373,6 +373,10 @@
     <Compile Include="Migrations\202207211447289_Change primary key chathistory table.designer.cs">
       <DependentUpon>202207211447289_Change primary key chathistory table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207271253229_ChatHistoryFileName as primary key.cs" />
+    <Compile Include="Migrations\202207271253229_ChatHistoryFileName as primary key.designer.cs">
+      <DependentUpon>202207271253229_ChatHistoryFileName as primary key.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -509,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207211447289_Change primary key chathistory table.resx">
       <DependentUpon>202207211447289_Change primary key chathistory table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207271253229_ChatHistoryFileName as primary key.resx">
+      <DependentUpon>202207271253229_ChatHistoryFileName as primary key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
