@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 Web.config
+/BotAgentHubApp/Files/ChatHistory
