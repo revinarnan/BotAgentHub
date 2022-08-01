@@ -4,64 +4,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Live Chat</h2>
+<div class="rowz">
+    <div class="columnz" style="margin-right: 2vw">
+        <h2>Live Chat</h2>
 
-<div class="content">
-    <div class="container-req" style="height: 70vh; outline: none">
-        <iframe src="https://localhost:44361/Dashboard/DirectLine?Length=9" title="Live Chat"
-                style="width: 78vw"></iframe>
-    </div>
-
-</div>
-
-<div class="judul">
-    <h2>Balas Melalui E-mail</h2>
-</div>
-
-@foreach (var item in Model.EmailQuestions)
-{
-    <div class="content">
-        <div class="container-req">
-            <div class="email-wrap mobile-hide">
-                <span style="padding: 0 1vw 0 1vw; font-weight: normal; word-break: break-word">
-
-                    @Html.DisplayFor(modelItem => item.Email)
-
-                </span>
+        <div class="content">
+            <div class="container-req" style="height: 65vh; outline: none">
+                <iframe src="@Url.Action("DirectLine", "Dashboard")" title="Live Chat"
+                        style="width: 100%"></iframe>
             </div>
-
-            <div class="message" style="font-weight: normal;">
-
-                @Html.DisplayFor(modelItem => item.Question)
-
-            </div>
-
-
-            <button class="terima"
-                    onclick="location.href = '@Url.Action("Index", "SendEmail", new {id = item.Id})';">
-                <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
-            </button>
-
-            @*<button class="terima"
-                        onclick="createPopupWin('https://localhost:44361/SendEmail','Balas Melalui E-mail', 300, 400)">
-                    <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
-
-                    <script>
-                        function createPopupWin(pageURL, pageTitle,
-                            popupWinWidth, popupWinHeight) {
-                            var left = (screen.width - popupWinWidth) / 2;
-                            var top = (screen.height - popupWinHeight) / 4;
-
-                            var myWindow = window.open(pageURL, pageTitle,
-                                'resizable=no, width=' + popupWinWidth
-                                + ', height=' + popupWinHeight + ', top='
-                                + top + ', left=' + left);
-                        }
-                    </script>
-                </button>*@
         </div>
     </div>
-}
+    <div class="columnz" style="overflow-y: auto">
+        <h2>Balas Melalui E-mail</h2>
 
-@Html.DisplayFor(model => model.Notification)
+        @foreach (var item in Model.EmailQuestions)
+        {
+            <div class="content">
+                <div class="container-req">
+                    <div class="email-wrap mobile-hide">
+                        <span style="padding: 0 1vw 0 1vw; font-weight: normal; word-break: break-word">
+
+                            @*@Html.DisplayFor(modelItem => item.Email)*@
+                            @item.Email.Substring(0,item.Email.IndexOf("@",StringComparison.Ordinal))
+
+                        </span>
+                    </div>
+
+                    <div class="message" style="font-weight: normal;">
+
+                        @Html.DisplayFor(modelItem => item.Question)
+
+                    </div>
+
+
+                    <button class="terima"
+                            onclick="location.href = '@Url.Action("Index", "SendEmail", new {id = item.Id})';">
+                        <i class="fa fa-envelope" style="color: white;" aria-hidden="true"></i>
+                    </button>
+
+                </div>
+            </div>
+        }
+
+        @Html.DisplayFor(model => model.Notification)
+    </div>
+</div>
+
+
+
+
 

@@ -8,6 +8,19 @@
     box-sizing: border-box;
 }
 
+.rowz {
+    display: flex;
+}
+
+.columnz {
+    flex: 50%;
+    border: solid;
+    border-width: 1px;
+    border-color: #23272D;
+    border-radius: 10px;
+    padding: 2vw;
+    height: 83vh;
+}
 
 .jumbotron_wrapper {
     display: flex;
@@ -298,7 +311,7 @@ nav {
 .container-req {
     display: flex;
     flex-direction: row;
-    width: 99%;
+    width: 100%;
     min-height: 7vh;
     z-index: 1;
     top: 0;
@@ -440,6 +453,19 @@ footer {
     float: left;
     max-width: 100%;
     overflow-x: auto;
+}
+
+@media (max-width: 1000px) {
+    .rowz {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .columnz {
+        flex: 100%;
+        width: 100%;
+        margin-bottom: 2vw;
+    }
 }
 
 
