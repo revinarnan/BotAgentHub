@@ -175,7 +175,8 @@ namespace BotAgentHubApp.Controllers
         [Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult> RegisterRole(SettingViewModels model, ApplicationUser user)
         {
-            var userId = _context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
+            var userId = _context.Users.Where(i => i.UserName == user.UserName)
+                .Select(s => s.Id);
             string updateId = "";
             foreach (var i in userId)
             {

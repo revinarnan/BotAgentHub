@@ -1,4 +1,5 @@
 ﻿using BotAgentHubApp.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -15,6 +16,15 @@ namespace BotAgentHubApp.Controllers
         // GET: Setting
         public ActionResult Index()
         {
+            if (User.IsInRole("StaffAdmin"))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+
+            if (User.IsInRole("Kaprodi"))
+            {
+                return RedirectToAction("Index", "ChatHistory");
+            }
 
             var chatbotConfig = _context.ChatbotConfigurations.SingleOrDefault();
             var roleName = from u in _context.Users
@@ -22,10 +32,18 @@ namespace BotAgentHubApp.Controllers
                            join r in _context.Roles on ur.RoleId equals r.Id
                            where r.Name == "StaffAdmin" || r.Name == "SuperAdmin"
                            select new UserRoleDto { UserName = u.UserName, RoleName = r.Name };
+            var userList = new List<ApplicationUser>();
+            foreach (var user in _context.Users)
+            {
+                if (user.UserName != User.Identity.Name)
+                {
+                    userList.Add(user);
+                }
+            }
 
             var viewModel = new SettingViewModels
             {
-                Users = _context.Users.ToList(),
+                Users = userList,
                 Roles = _context.Roles.ToList(),
                 UserRole = roleName.ToList(),
                 ChatbotConfiguration = chatbotConfig
@@ -37,16 +55,6 @@ namespace BotAgentHubApp.Controllers
             if (User.IsInRole("SuperAdmin"))
             {
                 return View("SettingsView", viewModel);
-            }
-
-            if (User.IsInRole("StaffAdmin"))
-            {
-                return RedirectToAction("Index", "Dashboard");
-            }
-
-            if (User.IsInRole("Kaprodi"))
-            {
-                return RedirectToAction("Index", "ChatHistory");
             }
 
             return View("InvalidRole");
