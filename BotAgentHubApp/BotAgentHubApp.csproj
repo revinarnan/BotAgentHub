@@ -70,18 +70,6 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Azure.Cosmos.Client, Version=3.29.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Cosmos.3.29.0\lib\netstandard2.0\Microsoft.Azure.Cosmos.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Cosmos.Core, Version=2.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Cosmos.3.29.0\lib\netstandard2.0\Microsoft.Azure.Cosmos.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Cosmos.Direct, Version=3.29.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Cosmos.3.29.0\lib\netstandard2.0\Microsoft.Azure.Cosmos.Direct.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.Cosmos.Serialization.HybridRow, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Azure.Cosmos.3.29.0\lib\netstandard2.0\Microsoft.Azure.Cosmos.Serialization.HybridRow.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -377,6 +365,10 @@
     <Compile Include="Migrations\202207271253229_ChatHistoryFileName as primary key.designer.cs">
       <DependentUpon>202207271253229_ChatHistoryFileName as primary key.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202208051221321_Update_chatbotconfiguration_field.cs" />
+    <Compile Include="Migrations\202208051221321_Update_chatbotconfiguration_field.designer.cs">
+      <DependentUpon>202208051221321_Update_chatbotconfiguration_field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -429,7 +421,6 @@
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="ThirdPartyNotice.txt" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -518,6 +509,9 @@
     <EmbeddedResource Include="Migrations\202207271253229_ChatHistoryFileName as primary key.resx">
       <DependentUpon>202207271253229_ChatHistoryFileName as primary key.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202208051221321_Update_chatbotconfiguration_field.resx">
+      <DependentUpon>202208051221321_Update_chatbotconfiguration_field.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -560,11 +554,9 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Azure.Cosmos.3.29.0\build\netstandard2.0\Microsoft.Azure.Cosmos.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Azure.Cosmos.3.29.0\build\netstandard2.0\Microsoft.Azure.Cosmos.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
-  <Import Project="..\packages\Microsoft.Azure.Cosmos.3.29.0\build\netstandard2.0\Microsoft.Azure.Cosmos.targets" Condition="Exists('..\packages\Microsoft.Azure.Cosmos.3.29.0\build\netstandard2.0\Microsoft.Azure.Cosmos.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -65,6 +65,8 @@ namespace BotAgentHubApp.Controllers
         [Authorize(Roles = "SuperAdmin")]
         public ActionResult Save(SettingViewModels models)
         {
+            if (!ModelState.IsValid) RedirectToAction("Index", "Setting");
+
             var botInDb = _context.ChatbotConfigurations.Single();
             botInDb.UrlClient = models.ChatbotConfiguration.UrlClient;
             botInDb.UrlKb = models.ChatbotConfiguration.UrlKb;
@@ -72,6 +74,7 @@ namespace BotAgentHubApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Setting");
+
         }
     }
 }

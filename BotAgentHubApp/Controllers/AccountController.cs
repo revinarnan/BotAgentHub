@@ -175,12 +175,14 @@ namespace BotAgentHubApp.Controllers
         [Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult> RegisterRole(SettingViewModels model, ApplicationUser user)
         {
+            if (!ModelState.IsValid) return RedirectToAction("Index", "Setting");
+
             var userId = _context.Users.Where(i => i.UserName == user.UserName)
                 .Select(s => s.Id);
             string updateId = "";
             foreach (var i in userId)
             {
-                updateId = i.ToString();
+                updateId = i;
             }
 
             //get user's assigned roles
@@ -193,6 +195,7 @@ namespace BotAgentHubApp.Controllers
             await UserManager.AddToRoleAsync(updateId, model.Name);
 
             return RedirectToAction("Index", "Setting");
+
         }
 
         //
