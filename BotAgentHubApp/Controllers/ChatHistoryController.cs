@@ -21,18 +21,18 @@ namespace BotAgentHubApp.Controllers
         // GET: ChatHistory
         public ActionResult Index()
         {
-            var model = from record in _context.ChatHistories
-                        orderby record.CreatedAt
-                        select record;
-
-            var viewModel = new ChatHistoryViewModels()
-            {
-                ChatHistories = model,
-                Transcript = new TranscriptDto()
-            };
-
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin") || User.IsInRole("Kaprodi"))
             {
+                var model = from record in _context.ChatHistories
+                            orderby record.CreatedAt
+                            select record;
+
+                var viewModel = new ChatHistoryViewModels()
+                {
+                    ChatHistories = model,
+                    Transcript = new TranscriptDto()
+                };
+
                 return View("ChatHistoryView", viewModel);
             }
 

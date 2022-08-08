@@ -93,6 +93,7 @@ namespace BotAgentHubApp.Controllers
 
         //
         // GET: /Account/VerifyCode
+        [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
@@ -106,6 +107,7 @@ namespace BotAgentHubApp.Controllers
         //
         // POST: /Account/VerifyCode
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
@@ -200,6 +202,7 @@ namespace BotAgentHubApp.Controllers
 
         //
         // GET: /Account/ConfirmEmail
+        [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -375,6 +378,7 @@ namespace BotAgentHubApp.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
