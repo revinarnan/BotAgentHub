@@ -6,10 +6,10 @@ namespace BotAgentHubApp.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "URL Web Client")]
+        [Display(Name = "Web Client")]
         public string UrlClient { get; set; }
 
-        [Display(Name = "URL Knowledge Base")]
+        [Display(Name = "Knowledge Base")]
         public string UrlKb { get; set; }
     }
 }

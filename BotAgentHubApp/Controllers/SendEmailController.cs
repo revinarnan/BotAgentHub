@@ -23,7 +23,7 @@ namespace BotAgentHubApp.Controllers
         {
             var mailTemplate = "Terima kasih telah mencoba menghubungi kami.\n" +
                                "Mohon maaf kami tidak tersedia pada jam tersebut.\n\n" +
-                               "Berikut ini merupakan jawaban dari pertanyaan yang anda sampaikan:\n" +
+                               "Berikut ini merupakan jawaban dari pertanyaan yang anda sampaikan:\n\n" +
                                "[[SILAKAN ISI JAWABAN SESUAI PERTANYAAN YANG DIAJUKAN]]\n\n" +
                                "Jika masih ada yang ingin ditanyakan, anda dapat membalas melalui email ini.\n" +
                                "Terima kasih,\n" +
@@ -42,7 +42,7 @@ namespace BotAgentHubApp.Controllers
             };
             viewModel.BotEmailQuestion.Id = questionData.Id;
             viewModel.EmailModel.To = questionData.Email;
-            viewModel.EmailModel.Subject = $"Balas: [{questionData.Question}]";
+            viewModel.EmailModel.Subject = $"[Balas]: {questionData.Question}";
             viewModel.EmailModel.Body = mailTemplate;
 
             return View(viewModel);
