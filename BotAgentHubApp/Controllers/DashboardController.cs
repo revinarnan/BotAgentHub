@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Configuration;
 using System.Web.Mvc;
 
@@ -21,9 +22,7 @@ namespace BotAgentHubApp.Controllers
             Convert.ToBoolean(WebConfigurationManager.AppSettings["EnableDirectLineEnhancedAuthentication"]);
         private static readonly string DirectLineSecret = WebConfigurationManager.AppSettings["DirectLineSecret"];
         private static readonly string BotName = WebConfigurationManager.AppSettings["BotName"];
-
         private readonly string _mode;
-        private readonly string _userId;
 
         private readonly ApplicationDbContext _context;
 
@@ -31,25 +30,17 @@ namespace BotAgentHubApp.Controllers
         {
             _context = new ApplicationDbContext();
 
-            if (EnableDirectLineEnhancedAuthentication)
-            {
-                this._userId = $"dl_{Guid.NewGuid()}";
-            }
-
-            // Determine which mode to operate under:
-            // - Direct Line Speech should be used if a speech service region identifier and key are provided
-            // - Direct Line should be used if a DL secret is provided
-            // - Default to an unknown state (i.e. invalid app configuration provided)
             if (!string.IsNullOrEmpty(DirectLineSecret))
             {
-                this._mode = DirectLineMode;
+                _mode = DirectLineMode;
             }
             else
             {
-                this._mode = UnknownMode;
+                _mode = UnknownMode;
             }
         }
 
+        // GET
         public ActionResult Index()
         {
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
@@ -83,45 +74,32 @@ namespace BotAgentHubApp.Controllers
             return View("InvalidRole");
         }
 
-        public ActionResult DirectLine(string locale = "en-us")
+        public async Task<PartialViewResult> DirectLine(string locale = "en-us")
         {
-            bool isDirectLineMode = string.Equals(DirectLineMode, this._mode, StringComparison.OrdinalIgnoreCase);
+            var isDirectLineMode = string.Equals(DirectLineMode, _mode, StringComparison.OrdinalIgnoreCase);
 
             ViewData["Locale"] = locale;
-            ViewData["Mode"] = this._mode;
+            ViewData["Mode"] = _mode;
             ViewData["Title"] = BotName;
             ViewData["UserId"] = User.Identity.GetUserName();
             ViewData["UserName"] = User.Identity.GetUserName();
 
             if (isDirectLineMode)
             {
-                string directLineToken = string.Empty;
+                var content = string.Empty;
+                var directLineToken = string.Empty;
 
                 var directLineClient = new HttpClient();
-                directLineClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-                    "Bearer",
-                    DirectLineSecret);
+                var directLineRequest = new HttpRequestMessage(HttpMethod.Post, GenerateDirectLineTokenUrl);
 
-                string content = EnableDirectLineEnhancedAuthentication
-                    ? JsonConvert.SerializeObject(
-                        new
-                        {
-                            User = new
-                            {
-                                Id = this._userId
-                            }
-                        })
-                    : string.Empty;
+                directLineRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", DirectLineSecret);
+                directLineRequest.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = directLineClient.PostAsync(
-                    GenerateDirectLineTokenUrl,
-                    new StringContent(content, Encoding.UTF8, "application/json")).Result;
-
+                var response = await directLineClient.SendAsync(directLineRequest);
                 if (response.IsSuccessStatusCode)
                 {
-                    string responseString = response.Content.ReadAsStringAsync().Result;
-                    var directLineResponse = JsonConvert.DeserializeObject<DirectLineResponse>(responseString);
-                    directLineToken = directLineResponse.Token;
+                    var responseString = await response.Content.ReadAsStringAsync();
+                    directLineToken = JsonConvert.DeserializeObject<DirectLineResponse>(responseString)?.Token;
                 }
 
                 ViewData["DirectLineToken"] = directLineToken;

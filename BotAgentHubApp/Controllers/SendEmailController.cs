@@ -21,13 +21,13 @@ namespace BotAgentHubApp.Controllers
         // GET: SendEmail
         public ActionResult Index(string id)
         {
-            var mailTemplate = "Terima kasih telah mencoba menghubungi kami.\n" +
-                               "Mohon maaf kami tidak tersedia pada jam tersebut.\n\n" +
-                               "Berikut ini merupakan jawaban dari pertanyaan yang anda sampaikan:\n\n" +
-                               "[[SILAKAN ISI JAWABAN SESUAI PERTANYAAN YANG DIAJUKAN]]\n\n" +
-                               "Jika masih ada yang ingin ditanyakan, anda dapat membalas melalui email ini.\n" +
-                               "Terima kasih,\n" +
-                               "EchaBot";
+            const string mailTemplate = "Terima kasih telah mencoba menghubungi kami.\n" +
+                                        "Mohon maaf kami tidak tersedia pada jam tersebut.\n\n" +
+                                        "Berikut ini merupakan jawaban dari pertanyaan yang anda sampaikan:\n\n" +
+                                        "[[SILAKAN ISI JAWABAN SESUAI PERTANYAAN YANG DIAJUKAN]]\n\n" +
+                                        "Jika masih ada yang ingin ditanyakan, anda dapat membalas melalui email ini.\n" +
+                                        "Terima kasih,\n" +
+                                        "EchaBot";
 
             var questionsModel = from question in _context.ChatBotEmailQuestions
                                  where question.IsAnswered == false
@@ -42,7 +42,7 @@ namespace BotAgentHubApp.Controllers
             };
             viewModel.BotEmailQuestion.Id = questionData.Id;
             viewModel.EmailModel.To = questionData.Email;
-            viewModel.EmailModel.Subject = $"[Balas]: {questionData.Question}";
+            viewModel.EmailModel.Subject = $"[Balas: {questionData.Question}]";
             viewModel.EmailModel.Body = mailTemplate;
 
             return View(viewModel);

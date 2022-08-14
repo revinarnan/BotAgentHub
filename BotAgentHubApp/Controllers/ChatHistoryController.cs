@@ -24,7 +24,7 @@ namespace BotAgentHubApp.Controllers
             if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin") || User.IsInRole("Kaprodi"))
             {
                 var model = from record in _context.ChatHistories
-                            orderby record.CreatedAt
+                            orderby record.CreatedAt descending
                             select record;
 
                 var viewModel = new ChatHistoryViewModels()

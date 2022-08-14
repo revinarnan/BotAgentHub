@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.Expressions;
 
 namespace BotAgentHubApp.Controllers
 {
@@ -31,6 +32,7 @@ namespace BotAgentHubApp.Controllers
                            join ur in _context.UserRoles on u.Id equals ur.UserId
                            join r in _context.Roles on ur.RoleId equals r.Id
                            where r.Name == "StaffAdmin" || r.Name == "SuperAdmin"
+                           orderby r.Name descending
                            select new UserRoleDto { UserName = u.UserName, RoleName = r.Name };
             var userList = new List<ApplicationUser>();
             foreach (var user in _context.Users)
@@ -60,6 +62,7 @@ namespace BotAgentHubApp.Controllers
             return View("InvalidRole");
         }
 
+        // POST /Setting/Save
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "SuperAdmin")]
@@ -74,7 +77,6 @@ namespace BotAgentHubApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Setting");
-
         }
     }
 }
