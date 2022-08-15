@@ -55,37 +55,9 @@
                     @Html.DisplayFor(modelItem => item.IsDoneOnEmail)
                 </td>
                 <td>
-                    @Html.ActionLink("View Document", "ViewDocument", new { id = item.ChatHistoryFileName })
+                    @Html.ActionLink("Lihat Dokumen", "ViewDocument", new { id = item.ChatHistoryFileName })
                 </td>
             </tr>
         }
     </table>
 </div>
-
-@*@if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin"))
-{
-    <button id="myBtn" class="act-btn" onclick="createPopupWin('https://localhost:44361/Dashboard/DirectLine?Length=9','Chat Room', 300, 400)">
-
-        <svg class="mobile-hide" height="2vw" width="2vw" style="vertical-align: middle; margin-right: 10px">
-            <circle cx="1vw" cy="1vw" r="0.8vw" stroke-width="0" fill="#FED400" />
-        </svg>
-
-        <span style="vertical-align: middle; font-family: 'Nunito', sans-serif;">
-            Live Chat
-        </span>
-
-        <script>
-            function createPopupWin(pageURL, pageTitle,
-                popupWinWidth, popupWinHeight) {
-                var left = (screen.width - popupWinWidth) / 2;
-                var top = (screen.height - popupWinHeight) / 4;
-
-                var myWindow = window.open(pageURL, pageTitle,
-                    'resizable=yes, width=' + popupWinWidth
-                    + ', height=' + popupWinHeight + ', top='
-                    + top + ', left=' + left);
-            }
-        </script>
-
-    </button>
-}*@

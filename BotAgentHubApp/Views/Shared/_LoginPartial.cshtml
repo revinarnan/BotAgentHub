@@ -3,12 +3,13 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
         <span class="mobile-hide">
-            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "basic-txt", title = "Manage" })
+            @*@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "basic-txt", title = "Manage" })*@
+            <input type="text" value='@User.Identity.GetUserName()' disabled class="basic-txt" style="background:none; border:none; text-align:right; width: 50vw"/>
         </span>
-        
+
         <a href="javascript:document.getElementById('logoutForm').submit()">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                  style="margin-left: 1em;">

@@ -40,7 +40,10 @@
                     <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
                 }
 
-                <li>@Html.ActionLink("Riwayat Chat", "Index", "ChatHistory")</li>
+                @if (User.IsInRole("SuperAdmin") || User.IsInRole("StaffAdmin") || User.IsInRole("Kaprodi"))
+                { 
+                    <li>@Html.ActionLink("Riwayat Chat", "Index", "ChatHistory")</li>
+                }
 
                 @if (User.IsInRole("SuperAdmin"))
                 {
